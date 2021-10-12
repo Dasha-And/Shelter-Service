@@ -1,37 +1,29 @@
 package shelter.service.service;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.WriteResult;
+import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import shelter.service.model.Shelter;
-import shelter.service.repository.ShelterRepository;
+
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 
 @Service
 public class ShelterService {
 
-    @Autowired
-    ShelterRepository shelterRepository;
+    private static final String COLLECTION_NAME ="shelter" ;
 
-    public Shelter insertShelter(Shelter shelter) {
-         return shelterRepository.save(shelter);
-    }
+    public String saveShelter(Shelter shelter) throws ExecutionException, InterruptedException {
 
-    public void deleteShelter(Integer id) {
-        shelterRepository.deleteById(id);
-    }
+        Firestore dbFirestore= FirestoreClient.getFirestore();
+        ApiFuture<WriteResult> collectionApiFuture=dbFirestore.collection(COLLECTION_NAME).document().set(shelter);
 
-    public Shelter updateShelter(Integer id, Shelter shelter) {
-        shelter.setId(id);
-        return shelterRepository.save(shelter);
-    }
+        return collectionApiFuture.get().getUpdateTime().toString();
 
-    public List<Shelter> findAll() {
-        return shelterRepository.findAll();
-    }
-
-    public Optional<Shelter> findById(Integer id) {
-        return shelterRepository.findById(id);
     }
 }
