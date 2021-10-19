@@ -1,6 +1,7 @@
 package shelter.service.web.controller;
 
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.UserRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,14 +34,14 @@ public class UserController {
     }
 
     @PostMapping(path = "/login")
-    public String login(@RequestBody UserLoginForm userLoginForm) throws ExecutionException, InterruptedException {
+    public ResponseEntity<User> login(@RequestBody UserLoginForm userLoginForm) throws ExecutionException, InterruptedException {
         User user = userService.getUserDetailsByEmail(userLoginForm.getEmail());
         if (user != null && user.getPassword().equals(userLoginForm.getPassword())) {
-            return "user is registred and password is correct";
-        } else if (user != null && !user.getPassword().equals(userLoginForm.getPassword())) {
-            return "user is registred but password is incorrect";
+            return new ResponseEntity<User>(user, HttpStatus.OK);
+        } if (user != null && !user.getPassword().equals(userLoginForm.getPassword())) {
+            throw new IndexOutOfBoundsException();
         } else {
-            return "user is not registred";
+            throw new RuntimeException();
         }
     }
     @GetMapping("/")
