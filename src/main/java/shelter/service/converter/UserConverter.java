@@ -8,9 +8,9 @@ import shelter.service.web.model.UserDto;
 public class UserConverter {
 
     public User toDomainModel(UserDto userDto) {
-        String role = "ROLE_ADMIN";
+        String role = "admin";
         if (userDto.getRole() == null) {
-            role = "ROLE_USER";
+            role = "user";
         }
         return new User(userDto.getName(), userDto.getLastName(), userDto.getPhone(), userDto.getEmail(), userDto.getPassword(), role, userDto.getShelterId());
     }
