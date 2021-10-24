@@ -22,7 +22,7 @@ public class UserService {
 
     public String insertUser(User user) throws ExecutionException, InterruptedException, FirebaseAuthException {
         Firestore dbFirestore= FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionApiFuture=dbFirestore.collection(COLLECTION_NAME).document().set(user);
+        ApiFuture<WriteResult> collectionApiFuture=dbFirestore.collection(COLLECTION_NAME).document(user.getEmail()).set(user);
 
         return collectionApiFuture.get().getUpdateTime().toString();
     }
@@ -31,21 +31,17 @@ public class UserService {
 
         Firestore dbFirestore= FirestoreClient.getFirestore();
 
-        Query query = dbFirestore.collection(COLLECTION_NAME).whereEqualTo("email", email);
+        DocumentReference documentReference=dbFirestore.collection(COLLECTION_NAME).document(email);
 
-        ApiFuture<QuerySnapshot> future = query.get();
+        ApiFuture<DocumentSnapshot> future=documentReference.get();
 
-        if (!future.get().getDocuments().isEmpty()) {
-            DocumentSnapshot document = future.get().getDocuments().get(0);
+        DocumentSnapshot document=future.get();
 
-            User user = null;
-            if(document.exists()) {
-                user = document.toObject(User.class);
-                return user;
-            }else{
-                return null;
-            }
-        } else {
+        User user=null;
+        if(document.exists()) {
+            user = document.toObject(User.class);
+            return user;
+        }else{
             return null;
         }
     }
@@ -71,4 +67,13 @@ public class UserService {
         return userList.getOrDefault(id, null);
     }
 
+    public String updateUserShelterId(User user) throws ExecutionException, InterruptedException {
+
+        Firestore dbFirestore= FirestoreClient.getFirestore();
+
+        ApiFuture<WriteResult> collectionApiFuture=dbFirestore.collection(COLLECTION_NAME).document(user.getEmail()).update("shelterId", user.getShelterId());
+
+        return collectionApiFuture.get().getUpdateTime().toString();
+
+    }
 }
