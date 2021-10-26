@@ -12,6 +12,6 @@ public class UserConverter {
         if (userDto.getRole() == null) {
             role = "user";
         }
-        return new User(userDto.getName(), userDto.getLastName(), userDto.getPhone(), userDto.getEmail(), userDto.getPassword(), role, userDto.getShelterId());
+        return new User(userDto.getId(), userDto.getName(), userDto.getSurname(), userDto.getPhone(), userDto.getEmail(), userDto.getPassword(), role, userDto.getShelterId());
     }
 }
