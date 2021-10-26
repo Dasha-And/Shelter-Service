@@ -17,13 +17,13 @@
 		<java.version>11</java.version>
 		<testcontainers.version>1.16.0</testcontainers.version>
 	</properties>
-	<repositories>
-		<repository>
-			<id>my-repo1</id>
-			<name>your custom repo</name>
-			<url>https://maven.google.com/</url>
-		</repository>
-	</repositories>
+<!--	<repositories>-->
+<!--		<repository>-->
+<!--			<id>my-repo1</id>-->
+<!--			<name>your custom repo</name>-->
+<!--			<url>https://maven.google.com/</url>-->
+<!--		</repository>-->
+<!--	</repositories>-->
 	<dependencies>
 		<dependency>
 			<groupId>com.google.firebase</groupId>
@@ -34,10 +34,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-security</artifactId>-->
-<!--		</dependency>-->
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>5.3.10</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
