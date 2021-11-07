@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import shelter.service.converter.UserConverter;
 import shelter.service.exceptions.UserIsNotRegistered;
 import shelter.service.exceptions.WrongPasswordException;
+import shelter.service.model.Shelter;
 import shelter.service.model.User;
 import shelter.service.service.UserService;
 import shelter.service.web.form.UserLoginForm;
 import shelter.service.web.model.UserDto;
+
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -52,6 +55,11 @@ public class UserController {
     public ResponseEntity<User> getUserById(@RequestParam int userId) {
         User user = userService.getUserDetailsById(userId);
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/users")
+    public List<User> users() {
+        return userService.getAllUsers();
     }
 
     @PutMapping(path = "/update_user")

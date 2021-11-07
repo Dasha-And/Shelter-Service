@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import shelter.service.model.User;
 import shelter.service.repository.UserRepository;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -30,5 +32,9 @@ public class UserService {
 
     public User getUserDetailsByEmail(String email) {
         return userRepository.findUserByEmail(email);
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 }

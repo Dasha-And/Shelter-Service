@@ -14,11 +14,15 @@ CREATE TABLE IF NOT EXISTS Animal
 (
     id serial NOT NULL,
     name character varying NOT NULL,
+    description character varying(600) NOT NULL,
+    gender character varying NOT NULL,
     date_of_birth date NOT NULL,
-    weight double precision NOT NULL,
+    sterelized boolean NOT NULL,
     image_url character varying,
     species character varying NOT NULL,
-    PRIMARY KEY (id)
+    shelter_id integer NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (shelter_id) REFERENCES Shelter (id)
 );
 
 CREATE TABLE IF NOT EXISTS Animal_vaccination
@@ -33,17 +37,7 @@ CREATE TABLE IF NOT EXISTS Animal_vaccination
     FOREIGN KEY (animal_id) REFERENCES Animal (id)
 );
 
-CREATE TABLE IF NOT EXISTS Animal_shelter
-(
-    id serial NOT NULL,
-    animal_id integer NOT NULL,
-    shelter_id integer NOT NULL,
-    start_of_residence date NOT NULL,
-    end_of_residence date NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (shelter_id) REFERENCES Shelter (id),
-    FOREIGN KEY (animal_id) REFERENCES Animal (id)
-);
+
 
 CREATE TABLE IF NOT EXISTS Users
 (
