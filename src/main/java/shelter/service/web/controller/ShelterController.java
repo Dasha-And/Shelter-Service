@@ -40,13 +40,13 @@ public class ShelterController {
         Shelter insertedShelter = shelterService.saveShelter(shelter);
         User user = userService.getUserDetailsById(userId);
         user.setShelterId(insertedShelter.getId());
-        userService.updateUser(user, userId);
+        userService.updateUser(user);
         return new ResponseEntity<>(insertedShelter, HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/update_shelter")
-    public ResponseEntity<Shelter> updateShelter(@RequestBody Shelter shelter, @RequestParam int id) {
-        Shelter updatedShelter = shelterService.updateShelter(shelter, id);
+    public ResponseEntity<Shelter> updateShelter(@RequestBody Shelter shelter) {
+        Shelter updatedShelter = shelterService.updateShelter(shelter);
         return new ResponseEntity<>(updatedShelter, HttpStatus.OK);
     }
 

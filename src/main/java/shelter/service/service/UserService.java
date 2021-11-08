@@ -25,8 +25,7 @@ public class UserService {
         return userRepository.findUserById(id);
     }
 
-    public User updateUser(User user, int userId) {
-         user.setId(userId);
+    public User updateUser(User user) {
          return userRepository.save(user);
     }
 

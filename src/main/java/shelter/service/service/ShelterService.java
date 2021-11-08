@@ -27,8 +27,7 @@ public class ShelterService {
     public List<Shelter> getShelterDetails() {
         return shelterRepository.findAll();
     }
-    public Shelter updateShelter(Shelter shelter, int shelterId) {
-        shelter.setId(shelterId);
+    public Shelter updateShelter(Shelter shelter) {
         return shelterRepository.save(shelter);
     }
 }
