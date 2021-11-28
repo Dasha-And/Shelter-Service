@@ -29,8 +29,13 @@ public class AnimalController {
     }
 
     @GetMapping(path = "/animals")
-    public List<Animal> sports() {
+    public List<Animal> allAnimals() {
         return animalService.getAnimalDetails();
+    }
+
+    @GetMapping(path = "/animals/{id}")
+    public List<Animal> animalsByShelter(@PathVariable int id) {
+        return animalService.getAnimalsByShelterId(id);
     }
 
     @PostMapping(path = "/create_animal")

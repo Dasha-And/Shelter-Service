@@ -34,4 +34,8 @@ public class AnimalService {
     public void deleteAnimal(int id) {
         animalRepository.deleteById(id);
     }
+
+    public List<Animal> getAnimalsByShelterId(int id) {
+        return animalRepository.findAnimalsByShelterId(id);
+    }
 }
