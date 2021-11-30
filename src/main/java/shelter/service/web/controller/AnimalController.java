@@ -7,6 +7,9 @@ import shelter.service.model.Animal;
 import shelter.service.service.AnimalService;
 import shelter.service.service.ShelterService;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.List;
 
 @RestController
@@ -53,6 +56,21 @@ public class AnimalController {
     @DeleteMapping(path = "/delete_animal")
     public void delete(@RequestParam int id) {
         animalService.deleteAnimal(id);
+    }
+
+    @GetMapping(path = "/age")
+    public int getAge(@PathVariable int animalId) {
+        Animal animal = animalService.getAnimalDetailsById(animalId);
+        LocalDate now = LocalDate.now();
+        Period period = Period.between(animal.getDateOfBirth().toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate(), now);
+        if (period.getYears() >= 1) {
+            return period.getYears();
+        } else {
+            return period.getMonths();
+        }
+
     }
 
 }
