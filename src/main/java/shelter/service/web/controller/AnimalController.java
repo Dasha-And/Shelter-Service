@@ -58,7 +58,7 @@ public class AnimalController {
         animalService.deleteAnimal(id);
     }
 
-    @GetMapping(path = "/age")
+    @GetMapping(path = "/age/{id}")
     public int getAge(@PathVariable int animalId) {
         Animal animal = animalService.getAnimalDetailsById(animalId);
         LocalDate now = LocalDate.now();
