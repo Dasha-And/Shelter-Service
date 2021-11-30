@@ -62,8 +62,7 @@ public class AnimalController {
     public int getAge(@PathVariable int id) {
         Animal animal = animalService.getAnimalDetailsById(id);
         LocalDate now = LocalDate.now();
-        Period period = Period.between(animal.getDateOfBirth().toInstant()
-                .atZone(ZoneId.systemDefault())
+        Period period = Period.between(animal.getDateOfBirth()
                 .toLocalDate(), now);
         if (period.getYears() >= 1) {
             return period.getYears();
