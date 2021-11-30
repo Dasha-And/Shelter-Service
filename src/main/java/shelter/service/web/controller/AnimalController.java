@@ -59,8 +59,8 @@ public class AnimalController {
     }
 
     @GetMapping(path = "/age/{id}")
-    public int getAge(@PathVariable int animalId) {
-        Animal animal = animalService.getAnimalDetailsById(animalId);
+    public int getAge(@PathVariable int id) {
+        Animal animal = animalService.getAnimalDetailsById(id);
         LocalDate now = LocalDate.now();
         Period period = Period.between(animal.getDateOfBirth().toInstant()
                 .atZone(ZoneId.systemDefault())
