@@ -33,7 +33,7 @@ public class Animal {
     private Date dateOfBirth;
 
     @Column(name = "sterelized")
-    private boolean sterelized;
+    private boolean sterilized;
 
     @Column(name = "image_url")
     private String imageUrl;
