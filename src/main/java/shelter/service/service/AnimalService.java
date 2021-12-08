@@ -31,8 +31,11 @@ public class AnimalService {
         return animalRepository.findAnimalById(id);
     }
 
-    public List<Animal> getAnimalDetails() {
-        return animalRepository.findAll();
+    public List<Animal> getAnimalDetails(Optional<String> species, Optional<Boolean> sterilized) {
+        Specification<Animal> spec =
+                Specification.where(speciesIn(species))
+                        .and(sterilizedIn(sterilized));
+        return animalRepository.findAll(spec);
     }
     public Animal updateAnimal(Animal animal) {
         return animalRepository.save(animal);
