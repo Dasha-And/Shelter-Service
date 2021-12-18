@@ -27,7 +27,7 @@ public class AnimalVaccination {
     private int id;
 
     @Column(name = "animal_id")
-    private int animal_id;
+    private int animalId;
 
     @Column(name = "vaccine_name")
     private String vaccine_name;

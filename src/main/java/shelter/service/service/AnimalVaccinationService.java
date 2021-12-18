@@ -37,6 +37,6 @@ public class AnimalVaccinationService {
     }
 
     public List<AnimalVaccination> findByAnimal(int animalId) {
-        return animalVaccinationRepository.findAnimalVaccinationByAnimal_id(animalId);
+        return animalVaccinationRepository.findAnimalVaccinationByAnimalId(animalId);
     }
 }

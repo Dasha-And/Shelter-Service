@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface AnimalVaccinationRepository extends JpaRepository<AnimalVaccination, Integer> {
     AnimalVaccination findAnimalVaccinationById(int id);
-    List<AnimalVaccination> findAnimalVaccinationByAnimal_id(int animalId);
+    List<AnimalVaccination> findAnimalVaccinationByAnimalId(int animalId);
 }
