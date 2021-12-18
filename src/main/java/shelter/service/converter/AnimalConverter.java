@@ -18,13 +18,13 @@ public class AnimalConverter {
         Date dateOfBirth = animalService.getDateOfBirth(animalDto);
         return new Animal(animalDto.getId(), animalDto.getName(), animalDto.getDescription(),
                 animalDto.getGender(), dateOfBirth, animalDto.isSterilized(),
-                animalDto.getImageUrl(), animalDto.getSpecies(), animalDto.getShelterId());
+                animalDto.getImageUrl(), animalDto.getSpecies(), animalDto.getShelterId(), animalDto.getStatus());
     }
 
     public AnimalDto toDto(Animal animal) {
         String age = animalService.getAge(animal);
         return new AnimalDto(animal.getId(), animal.getName(),
                 animal.getDescription(), animal.getGender(), age, animal.isSterilized(),
-                animal.getImageUrl(), animal.getSpecies(), animal.getShelterId());
+                animal.getImageUrl(), animal.getSpecies(), animal.getShelterId(), animal.getStatus());
     }
 }

@@ -43,4 +43,7 @@ public class Animal {
 
     @Column(name = "shelter_id")
     private int shelterId;
+
+    @Column(name = "status")
+    private String status;
 }

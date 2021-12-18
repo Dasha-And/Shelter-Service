@@ -20,4 +20,5 @@ public class AnimalDto {
     private String imageUrl;
     private String species;
     private int shelterId;
+    private String status;
 }

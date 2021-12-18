@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS Shelter
     phone character varying NOT NULL,
     email character varying,
     site_url character varying,
+    capacity int,
     PRIMARY KEY (id)
 );
 
@@ -21,6 +22,7 @@ CREATE TABLE IF NOT EXISTS Animal
     image_url character varying,
     species character varying NOT NULL,
     shelter_id integer NOT NULL,
+    status character varying default 'FREE',
     PRIMARY KEY (id),
     FOREIGN KEY (shelter_id) REFERENCES Shelter (id)
 );
@@ -50,4 +52,10 @@ CREATE TABLE IF NOT EXISTS Users
     role character varying NOT NULL,
     shelter_id integer,
     PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS Bookings (
+    id serial PRIMARY KEY,
+    animal_id int,
+    date date
 );

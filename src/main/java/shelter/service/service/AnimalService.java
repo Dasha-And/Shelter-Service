@@ -50,6 +50,10 @@ public class AnimalService {
                 Collectors.toList());
     }
 
+    public int getByShelter(int id) {
+        return animalRepository.findAnimalsByShelterId(id).size();
+    }
+
     public String getAge(Animal animal) {
         LocalDate now = LocalDate.now();
         Period period = Period.between(animal.getDateOfBirth()

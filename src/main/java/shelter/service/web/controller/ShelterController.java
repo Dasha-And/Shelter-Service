@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import shelter.service.model.Shelter;
 import shelter.service.model.User;
+import shelter.service.service.AnimalService;
 import shelter.service.service.ShelterService;
 import shelter.service.service.UserService;
 
@@ -19,9 +20,12 @@ public class ShelterController {
     final
     UserService userService;
 
-    public ShelterController(ShelterService shelterService, UserService userService) {
+    final AnimalService animalService;
+
+    public ShelterController(ShelterService shelterService, UserService userService, AnimalService animalService) {
         this.shelterService = shelterService;
         this.userService = userService;
+        this.animalService = animalService;
     }
 
     @GetMapping(path = "/shelter_page")
@@ -48,6 +52,11 @@ public class ShelterController {
     public ResponseEntity<Shelter> updateShelter(@RequestBody Shelter shelter) {
         Shelter updatedShelter = shelterService.updateShelter(shelter);
         return new ResponseEntity<>(updatedShelter, HttpStatus.OK);
+    }
+
+    @GetMapping("get_taken_places")
+    public int getTakenPlacesInShelter(int id) {
+        return animalService.getByShelter(id);
     }
 
 }

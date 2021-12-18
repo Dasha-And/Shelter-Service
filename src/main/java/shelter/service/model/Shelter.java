@@ -37,4 +37,7 @@ public class Shelter {
     @Column(name = "site_url")
     private String siteUrl;
 
+    @Column(name = "capacity")
+    private int capacity;
+
 }
