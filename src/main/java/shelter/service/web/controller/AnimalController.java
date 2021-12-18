@@ -2,16 +2,19 @@ package shelter.service.web.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import shelter.service.converter.AnimalConverter;
-import shelter.service.model.Animal;
 import shelter.service.service.AnimalService;
 import shelter.service.service.ShelterService;
 import shelter.service.web.model.AnimalDto;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -39,8 +42,9 @@ public class AnimalController {
     }
 
     @GetMapping(path = "/animals")
-    public List<AnimalDto> allAnimals() {
-        return animalService.getAnimalDetails().stream().map(
+    public List<AnimalDto> allAnimals(@RequestParam(required = false) Optional<Boolean> sterilized,
+    @RequestParam(required = false) Optional<String> species) {
+        return animalService.getAnimalDetails(species, sterilized).stream().map(
                 animalConverter::toDto).collect(
                 Collectors.toList());
     }
