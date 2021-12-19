@@ -54,8 +54,8 @@ public class ShelterController {
         return new ResponseEntity<>(updatedShelter, HttpStatus.OK);
     }
 
-    @GetMapping("get_taken_places")
-    public int getTakenPlacesInShelter(int id) {
+    @GetMapping("/get_taken_places")
+    public int getTakenPlacesInShelter(@RequestParam int id) {
         return animalService.getByShelter(id);
     }
 
