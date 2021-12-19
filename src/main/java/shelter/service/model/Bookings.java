@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Getter
 @Setter
@@ -27,8 +28,8 @@ public class Bookings {
     private int id;
 
     @Column(name = "animal_id")
-    private int animal_id;
+    private int animalId;
 
     @Column(name = "date")
-    private Date date;
+    private Timestamp date;
 }

@@ -35,4 +35,8 @@ public class BookingsService {
     public void deleteBookings(int id) {
         bookingsRepository.deleteById(id);
     }
+
+    public List<Bookings> findBookingsByAnimal(int animalId) {
+        return bookingsRepository.findBookingsByAnimalId(animalId);
+    }
 }

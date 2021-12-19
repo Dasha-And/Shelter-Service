@@ -55,7 +55,8 @@ CREATE TABLE IF NOT EXISTS Users
 );
 
 CREATE TABLE IF NOT EXISTS Bookings (
-    id serial PRIMARY KEY,
+    id serial NOT NULL,
     animal_id int,
-    date date
+    date timestamp,
+    PRIMARY KEY (id)
 );
